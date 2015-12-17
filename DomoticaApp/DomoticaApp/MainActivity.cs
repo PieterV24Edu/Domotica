@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -25,6 +28,46 @@ namespace DomoticaApp
             Switch Adatper3 = FindViewById<Switch>(Resource.Id.Ch3);
             Switch Adatper4 = FindViewById<Switch>(Resource.Id.Ch4);
             Switch Adatper5 = FindViewById<Switch>(Resource.Id.ChAll);
+            EditText IpField = FindViewById<EditText>(Resource.Id.editTextIP);
+
+            Adatper1.CheckedChange += delegate (object sender, EventHandler e) { ask(IpField.Text, 32545, Adatper1.IsCheck)}
+        }
+
+        public Socket open(string ipaddress, int portnr)
+        {
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            IPAddress ip = IPAddress.Parse(ipaddress);
+            IPEndPoint endpoint = new IPEndPoint(ip, portnr);
+            socket.Connect(endpoint);
+            return socket;
+        }
+
+        public void write(Socket socket, string text)
+        {
+            socket.Send(Encoding.ASCII.GetBytes(text));
+        }
+
+        public string read(Socket socket)
+        {
+            byte[] bytes = new byte[4096];
+            int bytesRec = socket.Receive(bytes);
+            string text = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+            return text;
+        }
+
+        public void close(Socket socket)
+        {
+            socket.Close();
+        }
+
+        // datagram like conversation with server
+        public string ask(string ipaddress, int portnr, string message)
+        {
+            Socket s = open(ipaddress, portnr);
+            write(s, message);
+            string reply = read(s);
+            close(s);
+            return reply;
         }
     }
 }
