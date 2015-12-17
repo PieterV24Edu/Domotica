@@ -20,43 +20,33 @@
         android:text="Adapter 1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checked="false"
-        android:textOn="ON"
-        android:textOff="OFF" />
+        android:checked="false" />
     <Switch
         android:id="@+id/Ch2"
         android:textColor="#000000"
         android:text="Adapter 2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checked="false"
-        android:textOn="ON"
-        android:textOff="OFF" />
+        android:checked="false" />
     <Switch
         android:id="@+id/Ch3"
         android:textColor="#000000"
         android:text="Adapter 3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checked="false"
-        android:textOn="ON"
-        android:textOff="OFF" />
+        android:checked="false" />
     <Switch
         android:id="@+id/Ch4"
         android:textColor="#000000"
         android:text="Adapter 4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checked="false"
-        android:textOn="ON"
-        android:textOff="OFF" />
+        android:checked="false" />
     <Switch
         android:id="@+id/ChAll"
         android:textColor="#000000"
         android:text="Adapter All"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checked="false"
-        android:textOn="ON"
-        android:textOff="OFF" />
+        android:checked="false" />
 </LinearLayout>

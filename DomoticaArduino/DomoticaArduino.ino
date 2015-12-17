@@ -8,7 +8,7 @@ RCSwitch mySwitch = RCSwitch();
 EthernetServer server(32545);
 bool connected = false;
 
-const float Freq[][2] = {{8262702, 8262703}, {8262700, 8262701}, {8262698, 8262699}, {8262694, 8262695}, {8262689, 8262699}};
+const float Freq[][2] = {{8262702, 8262703}, {8262700, 8262701}, {8262698, 8262699}, {8262694, 8262695}, {8262689, 8262690}};
 
 bool States[] = {false, false, false, false};
 
@@ -18,8 +18,8 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   mySwitch.enableTransmit(5);
-  resetAll();
-
+  setAll(0);
+  
   Ethernet.begin(mac, ip);
   Serial.print("Adress: ");
   Serial.println(Ethernet.localIP());
@@ -33,9 +33,9 @@ void loop() {
   if(!connected) return;
   EthernetClient ethernetClient = server.available();
 
-  Serial.println("Application connected");
   while (ethernetClient.connected())
   {
+    //Serial.println("Application connected");
     char buffer[128];
     int count = 0;
     while(ethernetClient.available())
@@ -46,6 +46,7 @@ void loop() {
 
     if(count > 0)
     {
+      Serial.println(buffer);
       //Channel 1
       if(String(buffer) == String("Ch1ON")) States[0] = true;
       else if(String(buffer) == String("Ch1OFF")) States[0] = false;
@@ -59,8 +60,8 @@ void loop() {
       if(String(buffer) == String("Ch4ON")) States[3] = true;
       else if(String(buffer) == String("Ch4OFF")) States[3] = false;
       //Channel All
-      if(String(buffer) == String("ChAllON")) States[4] = true;
-      else if(String(buffer) == String("ChAllOFF")) States[4] = false;
+      if(String(buffer) == String("ChAllON")) setAll(1);
+      else if(String(buffer) == String("ChAllOFF")) setAll(0);
       //Return stuff
       //if(String(buffer) == String("getVal")) returnValues();
       //
@@ -71,11 +72,14 @@ void loop() {
 
 void mainProgram()
 {
-  for(int i = 0; i < 5; i++)
+  for(int i = 0; i < 4; i++)
   {
-    if(States[i] = true) mySwitch.send(Freq[i][1], 24);
+    Serial.print("Chanel ");
+    Serial.print(i + 1);
+    Serial.println(States[i]);
+    if(States[i] == true) mySwitch.send(Freq[i][1], 24);
     else mySwitch.send(Freq[i][0], 24);
-    delay(1000);
+    delay(100);
   }
 }
 
@@ -84,11 +88,14 @@ void returnValues()
   
 }
 
-void resetAll()
+void setAll(int state)
 {
-  mySwitch.send(Freq[4][0], 24);
-  delay(5000);
-  mySwitch.send(Freq[4][0], 24);
+  for(int i = 0; i < 4; i++)
+  {
+    if(state == 0) States[i] = false;
+    else States[i] = true;
+  }
+  mySwitch.send(Freq[4][state], 24);
   delay(5000);
 }
 
