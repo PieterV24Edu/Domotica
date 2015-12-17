@@ -41,6 +41,31 @@ namespace DomoticaApp
 			}
 		}
 		
+		public partial class Color
+		{
+			
+			// aapt resource value: 0x7f040002
+			public const int my_accent = 2130968578;
+			
+			// aapt resource value: 0x7f040000
+			public const int my_primary = 2130968576;
+			
+			// aapt resource value: 0x7f040001
+			public const int my_statusbarColor = 2130968577;
+			
+			// aapt resource value: 0x7f040003
+			public const int my_textColorPrimary = 2130968579;
+			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Color()
+			{
+			}
+		}
+		
 		public partial class Drawable
 		{
 			
@@ -60,8 +85,23 @@ namespace DomoticaApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int MyButton = 2131034112;
+			// aapt resource value: 0x7f070001
+			public const int Ch1 = 2131165185;
+			
+			// aapt resource value: 0x7f070002
+			public const int Ch2 = 2131165186;
+			
+			// aapt resource value: 0x7f070003
+			public const int Ch3 = 2131165187;
+			
+			// aapt resource value: 0x7f070004
+			public const int Ch4 = 2131165188;
+			
+			// aapt resource value: 0x7f070005
+			public const int ChAll = 2131165189;
+			
+			// aapt resource value: 0x7f070000
+			public const int editTextIP = 2131165184;
 			
 			static Id()
 			{
@@ -92,11 +132,8 @@ namespace DomoticaApp
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040001
-			public const int ApplicationName = 2130968577;
-			
-			// aapt resource value: 0x7f040000
-			public const int Hello = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int ApplicationName = 2131034112;
 			
 			static String()
 			{
@@ -104,6 +141,25 @@ namespace DomoticaApp
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int DomoticaTheme = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int Theme_Custom = 2131099649;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}

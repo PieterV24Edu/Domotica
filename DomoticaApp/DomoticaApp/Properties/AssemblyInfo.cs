@@ -7,12 +7,12 @@ using Android.App;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DomoticaApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This app can control an arduino for a school project")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("The Original Bananas")]
 [assembly: AssemblyProduct("DomoticaApp")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright ©The Original Bananas  2015")]
+[assembly: AssemblyTrademark("The Original Bananas")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
@@ -28,4 +28,3 @@ using Android.App;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: Application(Theme = "@android:style/Theme.Material.DialogWhenLarge.NoActionBar")]

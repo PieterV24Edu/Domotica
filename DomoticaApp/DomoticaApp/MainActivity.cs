@@ -11,8 +11,6 @@ namespace DomoticaApp
     [Activity(Label = "DomoticaApp", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -22,9 +20,11 @@ namespace DomoticaApp
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
-
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            Switch Adatper1 = FindViewById<Switch>(Resource.Id.Ch1);
+            Switch Adatper2 = FindViewById<Switch>(Resource.Id.Ch2);
+            Switch Adatper3 = FindViewById<Switch>(Resource.Id.Ch3);
+            Switch Adatper4 = FindViewById<Switch>(Resource.Id.Ch4);
+            Switch Adatper5 = FindViewById<Switch>(Resource.Id.ChAll);
         }
     }
 }

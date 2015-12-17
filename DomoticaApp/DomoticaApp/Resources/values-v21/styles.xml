@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<resources>
+    <!-- Inherit from the light Material Theme -->
+    <style name="DomoticaTheme" parent="android:Theme.Material.Light">
+        <!--Primary Color-->
+        <item name="android:colorPrimary">@color/my_primary</item>
+        <!--Dark Primary Color-->
+        <!--<item name="android:colorPrimaryDark">@color/my_primary</item>-->
+        <!--Status Bar Color-->
+        <item name="android:statusBarColor">@color/my_statusbarColor</item>
+        <!--Accent Color-->
+        <item name="android:colorAccent">@color/my_accent</item>
+        <!--Defaut Text Color-->
+        <item name="android:textColorPrimary">@color/my_textColorPrimary</item>
+        <!--Backrground Color-->
+        <!--<item name="android:windowBackground">@color/my_windowBackground</item>-->
+        <!--Navigation bar Color-->
+        <!--<item name="android:navigationBarColor">@color/my_navBarColor</item>-->
+        <!--Text color-->
+    </style>
+</resources>
