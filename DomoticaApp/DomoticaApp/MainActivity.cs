@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -34,47 +35,41 @@ namespace DomoticaApp
             EditText IpField = FindViewById<EditText>(Resource.Id.editTextIP);
 
             List<Switch> Adapters = new List<Switch>() { Adatper1, Adatper2, Adatper3, Adatper4, Adatper5 };
-
-            //updateSwitches(IpField.Text, Adapters);
+            ThreadPool.QueueUserWorkItem(o => checkSwitches(IpField.Text, Adapters));
 
             Adatper1.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
             {
                 if (!backgroundChange)
                 {
-                    tell(IpField.Text, port, (e.IsChecked ? "Ch1ON" : "Ch1OFF"));
-                    //updateSwitches(IpField.Text, Adapters);
+                    ThreadPool.QueueUserWorkItem(o => switchControl(1, e.IsChecked, Adapters, IpField.Text));
                 }
             };
             Adatper2.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
             {
                 if (!backgroundChange)
                 {
-                    tell(IpField.Text, port, (e.IsChecked ? "Ch2ON" : "Ch2OFF"));
-                    //updateSwitches(IpField.Text, Adapters);
+                    ThreadPool.QueueUserWorkItem(o => switchControl(2, e.IsChecked, Adapters, IpField.Text));
                 }
             };
             Adatper3.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
             {
                 if (!backgroundChange)
                 {
-                    tell(IpField.Text, port, (e.IsChecked ? "Ch3ON" : "Ch3OFF"));
-                    //updateSwitches(IpField.Text, Adapters);
+                    ThreadPool.QueueUserWorkItem(o => switchControl(3, e.IsChecked, Adapters, IpField.Text));
                 }
             };
             Adatper4.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
             {
                 if (!backgroundChange)
                 {
-                    tell(IpField.Text, port, (e.IsChecked ? "Ch4ON" : "Ch4OFF"));
-                    //updateSwitches(IpField.Text, Adapters);
+                    ThreadPool.QueueUserWorkItem(o => switchControl(4, e.IsChecked, Adapters, IpField.Text));
                 }
             };
             Adatper5.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
             {
                 if (!backgroundChange)
                 {
-                    tell(IpField.Text, port, (e.IsChecked ? "ChAllON" : "ChAllOFF"));
-                    //updateSwitches(IpField.Text, Adapters);
+                    ThreadPool.QueueUserWorkItem(o => switchControl(5, e.IsChecked, Adapters, IpField.Text));
                 }
             };
         }
@@ -123,22 +118,48 @@ namespace DomoticaApp
             return awnser;
         }
 
-        public void updateSwitches(string ipaddress, List<Switch> switches )
+        public void switchControl(int switchNr, bool state, List<Switch> Switches, string ipAdress)
+        {
+            switch (switchNr)
+            {
+                case 1:
+                    tell(ipAdress, port, state ? "Ch1ON" : "Ch1OFF");
+                    break;
+                case 2:
+                    tell(ipAdress, port, state ? "Ch2ON" : "Ch2OFF");
+                    break;
+                case 3:
+                    tell(ipAdress, port, state ? "Ch3ON" : "Ch3OFF");
+                    break;
+                case 4:
+                    tell(ipAdress, port, state ? "Ch4ON" : "Ch4OFF");
+                    break;
+                case 5:
+                    tell(ipAdress, port, state ? "ChAllON" : "ChAllOFF");
+                    break;
+            }
+            checkSwitches(ipAdress, Switches);
+        }
+
+        public void checkSwitches(string IpAdress, List<Switch> Switches)
         {
             backgroundChange = true;
-            int count = 0;
-            int trueCount = 0;
-            string[] states = ask(ipaddress, port, "States").Split(',');
-            for(int i = 0; i < 4; i++)
+            string[] states = ask(IpAdress, port, "States").Split(',');
+            List<bool> boolStates = new List<bool>();
+            foreach (string s in states)
             {
-                if (states[count] == "1")
-                {
-                    switches[i].Checked = true;
-                    trueCount++;
-                }
-                else if (states[count] == "0") switches[i].Checked = false;
+                if (s == "true") boolStates.Add(true);
+                else boolStates.Add(false);
             }
-            if (trueCount == 4 || trueCount == 0) switches[5].Checked = trueCount == 4 ? true : false;
+            RunOnUiThread(() =>
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Switches[i].Checked = boolStates[i];
+                }
+                if (boolStates.Contains(!boolStates[0])) Switches[4].Checked = false;
+                else Switches[4].Checked = boolStates[0];
+            });
             backgroundChange = false;
         }
     }
