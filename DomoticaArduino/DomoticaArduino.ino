@@ -2,6 +2,9 @@
 #include <Ethernet.h>
 #include <SPI.h>
 
+#define tempPin   0
+#define lightPin  1 
+
 byte mac[] = {0x40, 0x6e, 0x9f, 0x06, 0xe4, 0x7a};
 IPAddress ip(192, 168, 1, 10);
 RCSwitch mySwitch = RCSwitch();
@@ -12,11 +15,9 @@ const float Freq[][2] = {{8262702, 8262703}, {8262700, 8262701}, {8262698, 82626
 
 bool States[] = {false, true, false, false};
 
-
-
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
+  
   mySwitch.enableTransmit(5);
   setAll(0);
 
@@ -28,7 +29,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   if(!connected) return;
   EthernetClient ethernetClient = server.available();
 
@@ -46,38 +46,38 @@ void loop() {
     if(count > 0)
     {
       Serial.println(buffer);
-      //Channel 1
+      //Toggle 1
       if(String(buffer) == String("Ch1ON")) setSwitch(1, 1);
       else if(String(buffer) == String("Ch1OFF")) setSwitch(1, 0);
-      //Channel 2
+      //Toggle 2
       if(String(buffer) == String("Ch2ON")) setSwitch(2, 1);
       else if(String(buffer) == String("Ch2OFF")) setSwitch(2, 0);
-      //Channel 3
+      //Toggle 3
       if(String(buffer) == String("Ch3ON")) setSwitch(3, 1);
       else if(String(buffer) == String("Ch3OFF")) setSwitch(3, 0);
-      //Channel 4
+      //Toggle 4
       if(String(buffer) == String("Ch4ON")) setSwitch(4, 1);
       else if(String(buffer) == String("Ch4OFF")) setSwitch(4, 0);
-      //Channel All
+      //Toggle All
       if(String(buffer) == String("ChAllON")) setAll(1);
       else if(String(buffer) == String("ChAllOFF")) setAll(0);
-      //Return States to app
+      //Return States of the Switches to app
       if(String(buffer) == String("States")) returnStates(ethernetClient);
-      //Return stuff
-      //if(String(buffer) == String("getVal")) returnValues();
-      //
+      //Return values of the sensors
+      if(String(buffer) == String("getVal")) returnValues(ethernetClient);
     }
   }
 }
 
-void returnValues()
+void returnValues(EthernetClient client)
 {
-  
+  Serial.println(String(analogRead(tempPin) + "," + analogRead(lightPin)));
+  client.print(String(analogRead(tempPin) + "," + analogRead(lightPin)));
 }
 
 void setSwitch(int adapter, int state)
 {
-  Serial.print("Turning switch ");
+  Serial.print("Toggling switch ");
   Serial.print(adapter);
   Serial.print(" ");
   Serial.println(state);
