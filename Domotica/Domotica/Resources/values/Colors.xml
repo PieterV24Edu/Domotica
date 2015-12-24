@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+	  <!--Primary Color-->
+  <color name="my_primary">#c62828</color>
+  <!--Statusbar Color-->
+  <color name="my_statusbarColor">#b71c1c</color>
+  <!--Accent Color-->
+  <color name="my_accent">#e57373</color>
+  <!--Color of the Primary text-->
+  <color name="my_textColorDark">#FFFFFF</color>
+  <color name="my_textColorLight">#000000</color>
+  <!--Color of the background-->
+  <color name="my_windowBackground">#FFFFFF</color>
+  <!--Color of the menu-->
+  <color name="my_menuColor">#B71C1C</color>
+  <!--Color of the navigation bar-->
+  <!--<color name="my_navBarColor"></color>-->
+</resources>
