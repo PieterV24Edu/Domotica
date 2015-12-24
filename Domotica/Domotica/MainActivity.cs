@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Android.App;
 using Android.Content;
@@ -9,6 +10,7 @@ using Android.OS;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Android.Support.V4.Widget;
+using System.Drawing;
 
 namespace Domotica
 {
@@ -19,6 +21,8 @@ namespace Domotica
 		private MyActionBarDrawerToggle mDrawerToggle;
 		private DrawerLayout mDrawerLayout;
 		private ListView mDrawer;
+		private ArrayAdapter mAdapter;
+		private List<string> mDrawerData;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -34,6 +38,10 @@ namespace Domotica
 			SetSupportActionBar (mToolbar);
 			SupportActionBar.SetHomeButtonEnabled(true);
 			SupportActionBar.SetDisplayHomeAsUpEnabled(true);﻿
+
+			mDrawerData = new List<string> () {"Switches", "Sensors", "Sensor Threshold", "Timers", "Modes"};
+			mAdapter = new ArrayAdapter<string> (this, Resource.Layout.mytextview, mDrawerData);
+			mDrawer.Adapter = mAdapter;
 
 			mDrawerToggle = new MyActionBarDrawerToggle (
 				this,
@@ -52,6 +60,12 @@ namespace Domotica
 		{
 			mDrawerToggle.OnOptionsItemSelected (item);
 			return base.OnOptionsItemSelected (item);
+		}
+
+		protected override void OnPostCreate (Bundle savedInstanceState)
+		{
+			base.OnPostCreate (savedInstanceState);
+			mDrawerToggle.SyncState ();
 		}
 	}
 }

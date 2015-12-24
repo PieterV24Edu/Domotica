@@ -9,4 +9,8 @@
 		<item name="color">#FFFFFF</item>
 		<item name="spinBars">true</item>
 	</style>
+
+	<style name="DarkText">
+		<item name="android:textColor">#FFFFFF</item>
+	</style>
 </resources>
