@@ -2,6 +2,7 @@
 <resources>
 	<style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/my_primary</item>
+		<item name="colorPrimaryDark">@color/my_statusBarColor</item>
 		<item name="drawerArrowStyle">@style/MyDrawerArrowStyle</item>
 	</style>
 

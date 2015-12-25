@@ -54,6 +54,14 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyActionBarDrawerToggle.cs" />
+    <Compile Include="fragments\Switches1.cs" />
+    <Compile Include="fragments\Sensors1.cs" />
+    <Compile Include="fragments\Sensors2.cs" />
+    <Compile Include="fragments\Switches2.cs" />
+    <Compile Include="fragments\Connection1.cs" />
+    <Compile Include="fragments\Mode1.cs" />
+    <Compile Include="ConnectionProtocol.cs" />
+    <Compile Include="GlobalVariables.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -71,9 +79,16 @@
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\values\Colors.xml" />
     <AndroidResource Include="Resources\layout\mytextview.xml" />
+    <AndroidResource Include="Resources\layout\Switches1.axml" />
+    <AndroidResource Include="Resources\layout\Switches2.axml" />
+    <AndroidResource Include="Resources\layout\Sensors1.axml" />
+    <AndroidResource Include="Resources\layout\Sensors2.axml" />
+    <AndroidResource Include="Resources\layout\Connection.axml" />
+    <AndroidResource Include="Resources\layout\Mode.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+    <Folder Include="fragments\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -10,19 +10,28 @@ using Android.OS;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Android.Support.V4.Widget;
-using System.Drawing;
+using SupportFragment = Android.Support.V4.App.Fragment;
 
 namespace Domotica
 {
 	[Activity (Label = "Domotica", MainLauncher = true, Icon = "@mipmap/icon", Theme="@style/MyTheme")]
 	public class MainActivity : AppCompatActivity
 	{
+		//UI Variables
 		private SupportToolbar mToolbar;
 		private MyActionBarDrawerToggle mDrawerToggle;
 		private DrawerLayout mDrawerLayout;
 		private ListView mDrawer;
 		private ArrayAdapter mAdapter;
 		private List<string> mDrawerData;
+		private SupportFragment mCurrentFragment;
+		private Switches1 mSwitches1;
+		private Switches2 mSwitches2;
+		private Sensors1 mSensors1;
+		private Sensors2 mSensors2;
+		private Connection1 mConnection1;
+		private Mode1 mMode1;
+		private Stack<SupportFragment> mStackFragment;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -31,18 +40,46 @@ namespace Domotica
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
+			//Ui Items
 			mToolbar = FindViewById<SupportToolbar> (Resource.Id.toolbar);
 			mDrawerLayout = FindViewById<DrawerLayout> (Resource.Id.drawer_layout);
 			mDrawer = FindViewById<ListView> (Resource.Id.left_drawer);
 
+			//Fragments
+			mSwitches1 = new Switches1 ();
+			mSwitches2 = new Switches2 ();
+			mSensors1 = new Sensors1 ();
+			mSensors2 = new Sensors2 ();
+			mConnection1 = new Connection1 ();
+			mMode1 = new Mode1 ();
+			mStackFragment = new Stack<SupportFragment> ();
+
+			//Create Toolbar
 			SetSupportActionBar (mToolbar);
 			SupportActionBar.SetHomeButtonEnabled(true);
 			SupportActionBar.SetDisplayHomeAsUpEnabled(true);﻿
 
-			mDrawerData = new List<string> () {"Switches", "Sensors", "Sensor Threshold", "Timers", "Modes"};
+			//Create All Fragments
+			var trans = SupportFragmentManager.BeginTransaction ();
+			trans.Add (Resource.Id.fragmentContainter, mMode1, "Mode1");
+			trans.Hide (mMode1);
+			trans.Add (Resource.Id.fragmentContainter, mConnection1, "Connection1");
+			trans.Hide (mConnection1);
+			trans.Add (Resource.Id.fragmentContainter, mSensors2, "Sensors2");
+			trans.Hide (mSensors2);
+			trans.Add (Resource.Id.fragmentContainter, mSensors1, "Sensors1");
+			trans.Hide (mSensors1);
+			trans.Add (Resource.Id.fragmentContainter, mSwitches2, "Switches2");
+			trans.Hide(mSwitches2);
+			trans.Add (Resource.Id.fragmentContainter, mSwitches1, "Switches1");
+			trans.Commit ();
+			mCurrentFragment = mSwitches1;
+
+			//Set Data For the navigation Drawer
+			mDrawerData = new List<string> () {"Switches", "Sensors", "Sensor Threshold", "Timers","Connection", "Modes"};
 			mAdapter = new ArrayAdapter<string> (this, Resource.Layout.mytextview, mDrawerData);
 			mDrawer.Adapter = mAdapter;
-
+			//Enable DrawerToggle
 			mDrawerToggle = new MyActionBarDrawerToggle (
 				this,
 				mDrawerLayout,
@@ -50,11 +87,41 @@ namespace Domotica
 				Resource.String.closeDrawer
 			);
 
+			//Toggle DrawerToggle
 			mDrawerLayout.SetDrawerListener (mDrawerToggle);
 			SupportActionBar.SetHomeButtonEnabled (true);
 			SupportActionBar.SetDisplayShowTitleEnabled (true);
 			mDrawerToggle.SyncState ();
+
+			//Event handlers
+			//UI Event Handler
+			mDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => 
+			{
+				switch(e.Position)
+				{
+					case 0:
+						changeFragment(mSwitches1);
+						break;
+					case 1:
+						changeFragment(mSensors1);
+						break;
+					case 2:
+						changeFragment(mSensors2);
+						break;
+					case 3:
+						changeFragment(mSwitches2);
+						break;
+					case 4:
+						changeFragment(mConnection1);
+						break;
+					case 5:
+						changeFragment(mMode1);
+						break;
+				}
+			}; 
 		}
+
+
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
@@ -66,6 +133,32 @@ namespace Domotica
 		{
 			base.OnPostCreate (savedInstanceState);
 			mDrawerToggle.SyncState ();
+		}
+
+		public override void OnBackPressed ()
+		{
+			if (SupportFragmentManager.BackStackEntryCount > 0) 
+			{
+				SupportFragmentManager.PopBackStack ();
+				mCurrentFragment = mStackFragment.Pop ();
+			} 
+			else 
+			{
+				base.OnBackPressed ();
+			}
+		}
+
+		private void changeFragment(SupportFragment fragment1)
+		{
+			var trans = SupportFragmentManager.BeginTransaction ();
+			trans.Hide (mCurrentFragment);
+			trans.Show (fragment1);
+			trans.AddToBackStack(null);
+			trans.Commit ();
+
+			mStackFragment.Push (mCurrentFragment);
+			mCurrentFragment = fragment1;
+			mDrawerLayout.CloseDrawer (mDrawer);
 		}
 	}
 }
