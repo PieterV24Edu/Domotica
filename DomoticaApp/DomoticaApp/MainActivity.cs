@@ -35,45 +35,58 @@ namespace DomoticaApp
             EditText IpField = FindViewById<EditText>(Resource.Id.editTextIP);
 
             List<Switch> Adapters = new List<Switch>() { Adatper1, Adatper2, Adatper3, Adatper4, Adatper5 };
-            ThreadPool.QueueUserWorkItem(o => checkSwitches(IpField.Text, Adapters));
-
-            Adatper1.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
+            if (!backgroundChange)
             {
-                if (!backgroundChange)
+                Adatper1.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
                 {
-                    ThreadPool.QueueUserWorkItem(o => switchControl(1, e.IsChecked, Adapters, IpField.Text));
-                }
-            };
-            Adatper2.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
-            {
-                if (!backgroundChange)
+                    if (!backgroundChange)
+                    {
+                        ThreadPool.QueueUserWorkItem(o => switchControl(1, e.IsChecked, Adapters, IpField.Text));
+                    }
+                };
+                Adatper2.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
                 {
-                    ThreadPool.QueueUserWorkItem(o => switchControl(2, e.IsChecked, Adapters, IpField.Text));
-                }
-            };
-            Adatper3.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
-            {
-                if (!backgroundChange)
+                    if (!backgroundChange)
+                    {
+                        ThreadPool.QueueUserWorkItem(o => switchControl(2, e.IsChecked, Adapters, IpField.Text));
+                    }
+                };
+                Adatper3.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
                 {
-                    ThreadPool.QueueUserWorkItem(o => switchControl(3, e.IsChecked, Adapters, IpField.Text));
-                }
-            };
-            Adatper4.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
-            {
-                if (!backgroundChange)
+                    if (!backgroundChange)
+                    {
+                        ThreadPool.QueueUserWorkItem(o => switchControl(3, e.IsChecked, Adapters, IpField.Text));
+                    }
+                };
+                Adatper4.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
                 {
-                    ThreadPool.QueueUserWorkItem(o => switchControl(4, e.IsChecked, Adapters, IpField.Text));
-                }
-            };
-            Adatper5.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e)
-            {
-                if (!backgroundChange)
+                    if (!backgroundChange)
+                    {
+                        ThreadPool.QueueUserWorkItem(o => switchControl(4, e.IsChecked, Adapters, IpField.Text));
+                    }
+                };
+                Adatper5.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e)
                 {
-                    ThreadPool.QueueUserWorkItem(o => switchControl(5, e.IsChecked, Adapters, IpField.Text));
-                }
-            };
+                    if (!backgroundChange)
+                    {
+                        ThreadPool.QueueUserWorkItem(o => switchControl(5, e.IsChecked, Adapters, IpField.Text));
+                    }
+                };
+            }
         }
 
+        public bool TestConnection(string ipaddress)
+        {
+            try
+            {
+                open(ipaddress, port);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public Socket open(string ipaddress, int portnr)
         {
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -137,6 +150,8 @@ namespace DomoticaApp
                 case 5:
                     tell(ipAdress, port, state ? "ChAllON" : "ChAllOFF");
                     break;
+                default:
+                    break;
             }
             checkSwitches(ipAdress, Switches);
         }
@@ -155,12 +170,16 @@ namespace DomoticaApp
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    Switches[i].Checked = boolStates[i];
+                    if (Switches[i].Checked != boolStates[i])
+                    {
+                        Switches[i].Checked = boolStates[i];
+                    }
                 }
                 if (boolStates.Contains(!boolStates[0])) Switches[4].Checked = false;
                 else Switches[4].Checked = boolStates[0];
+                backgroundChange = false;
             });
-            backgroundChange = false;
+            //backgroundChange = false;
         }
     }
 }
