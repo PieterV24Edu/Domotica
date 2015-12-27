@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
+using Android.Widget;
+using Android.App;
 
 namespace Domotica
 {
@@ -13,7 +15,7 @@ namespace Domotica
 		public ConnectionProtocol ()
 		{
 		}
-		public void TestConnection()
+		public void TestConnection(TextView text)
 		{
 			Ping p = new Ping ();
 			PingReply reply = p.Send (GlobalVariables.IPAddress);

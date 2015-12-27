@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textColor="@color/my_textColorLight"
+        android:textSize="20sp"
         android:text="Connection"
         android:layout_centerInParent="true" />
     <LinearLayout

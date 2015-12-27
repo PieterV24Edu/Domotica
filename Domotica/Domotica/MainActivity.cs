@@ -46,6 +46,7 @@ namespace Domotica
 			mDrawerLayout = FindViewById<DrawerLayout> (Resource.Id.drawer_layout);
 			mDrawer = FindViewById<ListView> (Resource.Id.left_drawer);
 
+
 			//Fragments
 			mHome = new Home();
 			mSwitches1 = new Switches1 ();
@@ -56,6 +57,7 @@ namespace Domotica
 			mMode1 = new Mode1 ();
 			mStackFragment = new Stack<SupportFragment> ();
 
+
 			//Create Toolbar
 			SetSupportActionBar (mToolbar);
 			SupportActionBar.SetHomeButtonEnabled(true);
@@ -63,20 +65,31 @@ namespace Domotica
 
 			//Create All Fragments
 			var trans = SupportFragmentManager.BeginTransaction ();
+
+			trans.SetCustomAnimations (Resource.Animation.first_slide_in, Resource.Animation.first_slide_out, Resource.Animation.second_slide_in, Resource.Animation.second_slide_out);
+
 			trans.Add (Resource.Id.fragmentContainter, mMode1, "Mode1");
 			trans.Hide (mMode1);
+
 			trans.Add (Resource.Id.fragmentContainter, mConnection1, "Connection1");
 			trans.Hide (mConnection1);
+
 			trans.Add (Resource.Id.fragmentContainter, mSensors2, "Sensors2");
 			trans.Hide (mSensors2);
+
 			trans.Add (Resource.Id.fragmentContainter, mSensors1, "Sensors1");
 			trans.Hide (mSensors1);
+
 			trans.Add (Resource.Id.fragmentContainter, mSwitches2, "Switches2");
 			trans.Hide(mSwitches2);
+
 			trans.Add (Resource.Id.fragmentContainter, mSwitches1, "Switches1");
 			trans.Hide (mSwitches1);
+
 			trans.Add (Resource.Id.fragmentContainter, mHome, "Home");
+
 			trans.Commit ();
+
 			mCurrentFragment = mHome;
 
 			//Set Data For the navigation Drawer
@@ -99,7 +112,6 @@ namespace Domotica
 
 			if (savedInstanceState != null)
 			{
-				
 			}
 			else
 			{
@@ -174,6 +186,7 @@ namespace Domotica
 		private void changeFragment(SupportFragment fragment1)
 		{
 			var trans = SupportFragmentManager.BeginTransaction ();
+			trans.SetCustomAnimations (Resource.Animation.first_slide_in, Resource.Animation.first_slide_out, Resource.Animation.second_slide_in, Resource.Animation.second_slide_out);
 			trans.Hide (mCurrentFragment);
 			trans.Show (fragment1);
 			trans.AddToBackStack(null);

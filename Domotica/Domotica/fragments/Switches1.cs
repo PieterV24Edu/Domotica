@@ -23,6 +23,7 @@ namespace Domotica
 		private Switch Adapter3;
 		private Switch Adapter4;
 		private Switch Adapter5;
+		private Button buttonRefresh;
 		private List<Switch> _Adapters;
 		private bool backgroundChange = false;
 
@@ -48,6 +49,7 @@ namespace Domotica
 			Adapter3 = view.FindViewById<Switch>(Resource.Id.Ch3);
 			Adapter4 = view.FindViewById<Switch>(Resource.Id.Ch4);
 			Adapter5 = view.FindViewById<Switch>(Resource.Id.ChAll);
+			buttonRefresh = view.FindViewById<Button> (Resource.Id.buttonRefresh);
 			_Adapters = new List<Switch>() { Adapter1, Adapter2, Adapter3, Adapter4, Adapter5 };
 
 			//Switches Event Handler
@@ -84,6 +86,12 @@ namespace Domotica
 				if (!backgroundChange)
 				{
 					ThreadPool.QueueUserWorkItem (o => switchControl (5, e.IsChecked));
+				}
+			};
+			buttonRefresh.Click += delegate {
+				if(GlobalVariables.IpAvailable)
+				{
+					ThreadPool.QueueUserWorkItem(o => checkSwitches());
 				}
 			};
 			return view;

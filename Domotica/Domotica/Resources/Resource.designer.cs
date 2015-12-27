@@ -61,6 +61,18 @@ namespace Domotica
 			// aapt resource value: 0x7f050009
 			public const int abc_slide_out_top = 2131034121;
 			
+			// aapt resource value: 0x7f05000a
+			public const int first_slide_in = 2131034122;
+			
+			// aapt resource value: 0x7f05000b
+			public const int first_slide_out = 2131034123;
+			
+			// aapt resource value: 0x7f05000c
+			public const int second_slide_in = 2131034124;
+			
+			// aapt resource value: 0x7f05000d
+			public const int second_slide_out = 2131034125;
+			
 			static Animation()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -1342,7 +1354,13 @@ namespace Domotica
 			public const int abc_textfield_search_material = 2130837562;
 			
 			// aapt resource value: 0x7f02003b
-			public const int notification_template_icon_bg = 2130837563;
+			public const int ic_signal_wifi_off = 2130837563;
+			
+			// aapt resource value: 0x7f02003c
+			public const int ic_signal_wifi_on = 2130837564;
+			
+			// aapt resource value: 0x7f02003d
+			public const int notification_template_icon_bg = 2130837565;
 			
 			static Drawable()
 			{
@@ -1437,6 +1455,9 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f0c0036
 			public const int buttonPanel = 2131492918;
+			
+			// aapt resource value: 0x7f0c006a
+			public const int buttonRefresh = 2131492970;
 			
 			// aapt resource value: 0x7f0c0059
 			public const int cancel_action = 2131492953;

@@ -51,6 +51,11 @@
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:layout_margin="20dp" />
+            <Button
+                android:text="Refresh Switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonRefresh" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
