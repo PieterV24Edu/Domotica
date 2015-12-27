@@ -50,7 +50,6 @@ namespace Domotica
 			Adapter5 = view.FindViewById<Switch>(Resource.Id.ChAll);
 			_Adapters = new List<Switch>() { Adapter1, Adapter2, Adapter3, Adapter4, Adapter5 };
 
-
 			//Switches Event Handler
 			Adapter1.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e) 
 			{
@@ -126,10 +125,10 @@ namespace Domotica
 			{
 				if (s == "true") 
 					boolStates.Add(true);
-				else 
+				else if(s == "false") 
 					boolStates.Add(false);
 			}
-			if (_Adapters.Count == 5)
+			if (boolStates.Count == 4)
 			{
 				Activity.RunOnUiThread (() => {
 					for (int i = 0; i < 4; i++)

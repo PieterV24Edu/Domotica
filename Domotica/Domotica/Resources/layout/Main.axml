@@ -25,14 +25,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     <!-- Drawer List -->
+    <!--<ScrollView
+    		android:layout_width="240dp"
+    		android:layout_height="match_parent">-->
         <ListView
             android:id="@+id/left_drawer"
-            android:layout_width="240dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:choiceMode="singleChoice"
             android:divider="@color/my_accent"
             android:dividerHeight="1dp"
             android:background="@color/my_menuColor" />
+    <!--</ScrollView>-->
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

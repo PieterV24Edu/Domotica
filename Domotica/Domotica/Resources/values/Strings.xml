@@ -3,5 +3,12 @@
 	<string name="app_name">Domotica</string>
 	<string name="openDrawer">Drawer Open</string>
 	<string name="closeDrawer">Drawer Closed</string>
+	<string name="Home">Home</string>
+	<string name="Switches1">Switches</string>
+	<string name="Sensors1">Sensors</string>
+	<string name="Sensors2">Sensor Threshold</string>
+	<string name="Switches2">Timers</string>
+	<string name="Connection">Connection</string>
+	<string name="Mode">Modes</string>
 
 </resources>

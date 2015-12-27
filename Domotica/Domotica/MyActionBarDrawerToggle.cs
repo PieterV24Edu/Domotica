@@ -7,7 +7,7 @@ namespace Domotica
 {
 	public class MyActionBarDrawerToggle : SupportAtionBarDrawerToggle
 	{
-		private AppCompatActivity mHostActivity;
+		public AppCompatActivity mHostActivity;
 		private int mOpenedResource;
 		private int mClosedResource;
 		public MyActionBarDrawerToggle (AppCompatActivity host, DrawerLayout drawerLayout, int openedResource, int closedResource) 
@@ -17,7 +17,7 @@ namespace Domotica
 			mOpenedResource = openedResource;
 			mClosedResource = closedResource;
 		}
-
+			
 		public override void OnDrawerOpened (Android.Views.View drawerView)
 		{
 			base.OnDrawerOpened (drawerView);

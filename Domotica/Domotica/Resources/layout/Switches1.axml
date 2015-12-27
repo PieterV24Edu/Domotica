@@ -4,50 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/my_windowBackground">
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-        <Switch
-            android:id="@+id/Ch1"
-            android:textColor="#000000"
-            android:text="Switch 1"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:layout_margin="20dp" />
-        <Switch
-            android:id="@+id/Ch2"
-            android:textColor="#000000"
-            android:text="Switch 2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:layout_margin="20dp" />
-        <Switch
-            android:id="@+id/Ch3"
-            android:textColor="#000000"
-            android:text="Switch 3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:layout_margin="20dp" />
-        <Switch
-            android:id="@+id/Ch4"
-            android:textColor="#000000"
-            android:text="Switch 4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:layout_margin="20dp" />
-        <Switch
-            android:id="@+id/ChAll"
-            android:textColor="#000000"
-            android:text="All Switches"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:layout_margin="20dp" />
-    </LinearLayout>
+            android:layout_height="wrap_content">
+            <Switch
+                android:id="@+id/Ch1"
+                android:textColor="#000000"
+                android:text="Switch 1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:layout_margin="20dp" />
+            <Switch
+                android:id="@+id/Ch2"
+                android:textColor="#000000"
+                android:text="Switch 2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:layout_margin="20dp" />
+            <Switch
+                android:id="@+id/Ch3"
+                android:textColor="#000000"
+                android:text="Switch 3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:layout_margin="20dp" />
+            <Switch
+                android:id="@+id/Ch4"
+                android:textColor="#000000"
+                android:text="Switch 4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:layout_margin="20dp" />
+            <Switch
+                android:id="@+id/ChAll"
+                android:textColor="#000000"
+                android:text="All Switches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:layout_margin="20dp" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

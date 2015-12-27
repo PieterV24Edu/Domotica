@@ -14,7 +14,7 @@ using SupportFragment = Android.Support.V4.App.Fragment;
 
 namespace Domotica
 {
-	[Activity (Label = "Domotica", MainLauncher = true, Icon = "@mipmap/icon", Theme="@style/MyTheme")]
+	[Activity (Label = "Domotica", MainLauncher = true, ConfigurationChanges = ( Android.Content.PM.ConfigChanges.Orientation |Android.Content.PM.ConfigChanges.ScreenSize ) ,Icon = "@mipmap/icon", Theme="@style/MyTheme")]
 	public class MainActivity : AppCompatActivity
 	{
 		//UI Variables
@@ -25,6 +25,7 @@ namespace Domotica
 		private ArrayAdapter mAdapter;
 		private List<string> mDrawerData;
 		private SupportFragment mCurrentFragment;
+		private Home mHome;
 		private Switches1 mSwitches1;
 		private Switches2 mSwitches2;
 		private Sensors1 mSensors1;
@@ -46,6 +47,7 @@ namespace Domotica
 			mDrawer = FindViewById<ListView> (Resource.Id.left_drawer);
 
 			//Fragments
+			mHome = new Home();
 			mSwitches1 = new Switches1 ();
 			mSwitches2 = new Switches2 ();
 			mSensors1 = new Sensors1 ();
@@ -72,11 +74,13 @@ namespace Domotica
 			trans.Add (Resource.Id.fragmentContainter, mSwitches2, "Switches2");
 			trans.Hide(mSwitches2);
 			trans.Add (Resource.Id.fragmentContainter, mSwitches1, "Switches1");
+			trans.Hide (mSwitches1);
+			trans.Add (Resource.Id.fragmentContainter, mHome, "Home");
 			trans.Commit ();
-			mCurrentFragment = mSwitches1;
+			mCurrentFragment = mHome;
 
 			//Set Data For the navigation Drawer
-			mDrawerData = new List<string> () {"Switches", "Sensors", "Sensor Threshold", "Timers","Connection", "Modes"};
+			mDrawerData = new List<string> () {"Home", "Switches", "Sensors", "Sensor Threshold", "Timers","Connection", "Modes"};
 			mAdapter = new ArrayAdapter<string> (this, Resource.Layout.mytextview, mDrawerData);
 			mDrawer.Adapter = mAdapter;
 			//Enable DrawerToggle
@@ -93,6 +97,16 @@ namespace Domotica
 			SupportActionBar.SetDisplayShowTitleEnabled (true);
 			mDrawerToggle.SyncState ();
 
+			if (savedInstanceState != null)
+			{
+				changeFragment (mCurrentFragment);
+				
+			}
+			else
+			{
+				SupportActionBar.SetTitle (Resource.String.Home);	
+			}
+
 			//Event handlers
 			//UI Event Handler
 			mDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => 
@@ -100,22 +114,32 @@ namespace Domotica
 				switch(e.Position)
 				{
 					case 0:
-						changeFragment(mSwitches1);
+						changeFragment(mHome);
+						SupportActionBar.SetTitle (Resource.String.Home);
 						break;
 					case 1:
-						changeFragment(mSensors1);
+						changeFragment(mSwitches1);
+						SupportActionBar.SetTitle (Resource.String.Switches1);	
 						break;
 					case 2:
-						changeFragment(mSensors2);
+						changeFragment(mSensors1);
+						SupportActionBar.SetTitle (Resource.String.Sensors1);	
 						break;
 					case 3:
-						changeFragment(mSwitches2);
+						changeFragment(mSensors2);
+						SupportActionBar.SetTitle (Resource.String.Sensors2);	
 						break;
 					case 4:
-						changeFragment(mConnection1);
+						changeFragment(mSwitches2);
+						SupportActionBar.SetTitle (Resource.String.Switches2);
 						break;
 					case 5:
+						changeFragment(mConnection1);
+						SupportActionBar.SetTitle (Resource.String.Connection);
+						break;
+					case 6:
 						changeFragment(mMode1);
+						SupportActionBar.SetTitle (Resource.String.Mode);
 						break;
 				}
 			}; 
@@ -159,6 +183,11 @@ namespace Domotica
 			mStackFragment.Push (mCurrentFragment);
 			mCurrentFragment = fragment1;
 			mDrawerLayout.CloseDrawer (mDrawer);
+		}
+
+		protected override void OnSaveInstanceState (Bundle outState)
+		{
+			base.OnSaveInstanceState (outState);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 #define lightPin  1 
 
 byte mac[] = {0x40, 0x6e, 0x9f, 0x06, 0xe4, 0x7a};
-IPAddress ip(192, 168, 4, 10);
+IPAddress ip(192, 168, 1, 10);
 RCSwitch mySwitch = RCSwitch();
 EthernetServer server(32545);
 bool connected = false;
@@ -77,13 +77,15 @@ void returnValues(EthernetClient client)
 
 void setSwitch(int adapter, int state)
 {
-  Serial.print("Toggling switch ");
+  Serial.print(String("Toggling switch "));
   Serial.print(adapter);
   Serial.print(" ");
   Serial.println(state);
   mySwitch.send(Freq[adapter - 1][state], 24);
   if(state == 0) States[adapter - 1] = false;
   else States[adapter - 1] = true;
+  delay(100);
+  mySwitch.send(Freq[adapter - 1][state], 24);
   delay(100);
 }
 
@@ -94,6 +96,8 @@ void setAll(int state)
     if(state == 0) States[i] = false;
     else States[i] = true;
   }
+  mySwitch.send(Freq[4][state], 24);
+  delay(100);
   mySwitch.send(Freq[4][state], 24);
   delay(100);
 }

@@ -2,7 +2,9 @@
 using SystemSocket = System.Net.Sockets.Socket;
 using System.Net.Sockets;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
+using System.Threading;
 
 namespace Domotica
 {
@@ -13,24 +15,18 @@ namespace Domotica
 		}
 		public void TestConnection()
 		{
-			try
-			{
-				open();
-				GlobalVariables.IpAvailable = true;
-			}
-			catch
-			{
-				GlobalVariables.IpAvailable = false;
-			}
+			Ping p = new Ping ();
+			PingReply reply = p.Send (GlobalVariables.IPAddress);
+			GlobalVariables.IpAvailable = (reply.Status == IPStatus.Success);
 		}
 
 		//Open Socket Connection
 		public SystemSocket open()
 		{
-			SystemSocket socket = new SystemSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-			IPAddress ip = IPAddress.Parse(GlobalVariables.IPAddress);
-			IPEndPoint endpoint = new IPEndPoint(ip, GlobalVariables.PortAddress);
-			socket.Connect(endpoint);
+			SystemSocket socket = new SystemSocket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			IPAddress ip = IPAddress.Parse (GlobalVariables.IPAddress);
+			IPEndPoint endpoint = new IPEndPoint (ip, GlobalVariables.PortAddress);
+			socket.Connect (endpoint);
 			return socket;
 		}
 
@@ -56,19 +52,30 @@ namespace Domotica
 		//tell arduino what to do without expecting a response
 		public void tell(string message)
 		{
-			SystemSocket s = open();
-			write (s, message);
-			close (s);
+			try {
+				SystemSocket s = open ();
+				write (s, message);
+				close (s);
+			}
+			catch {
+				GlobalVariables.IpAvailable = false;
+			}
 		}
 
 		//tell arduino what to return
 		public string ask(string message)
 		{
-			SystemSocket s = open();
-			write (s, message);
-			string awnser = read (s);
-			close (s);
-			return awnser;
+			try {
+				SystemSocket s = open ();
+				write (s, message);
+				string awnser = read (s);
+				close (s);
+				return awnser;
+			}
+			catch {
+				GlobalVariables.IpAvailable = false;
+				return "null";
+			}
 		}
 	}
 }

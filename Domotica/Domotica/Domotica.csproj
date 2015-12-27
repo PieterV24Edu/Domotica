@@ -62,6 +62,7 @@
     <Compile Include="fragments\Mode1.cs" />
     <Compile Include="ConnectionProtocol.cs" />
     <Compile Include="GlobalVariables.cs" />
+    <Compile Include="fragments\Home.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -85,6 +86,7 @@
     <AndroidResource Include="Resources\layout\Sensors2.axml" />
     <AndroidResource Include="Resources\layout\Connection.axml" />
     <AndroidResource Include="Resources\layout\Mode.axml" />
+    <AndroidResource Include="Resources\layout\Home.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
