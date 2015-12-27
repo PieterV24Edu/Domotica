@@ -99,7 +99,6 @@ namespace Domotica
 
 			if (savedInstanceState != null)
 			{
-				changeFragment (mCurrentFragment);
 				
 			}
 			else
@@ -183,11 +182,6 @@ namespace Domotica
 			mStackFragment.Push (mCurrentFragment);
 			mCurrentFragment = fragment1;
 			mDrawerLayout.CloseDrawer (mDrawer);
-		}
-
-		protected override void OnSaveInstanceState (Bundle outState)
-		{
-			base.OnSaveInstanceState (outState);
 		}
 	}
 }
