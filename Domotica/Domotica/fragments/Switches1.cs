@@ -131,6 +131,7 @@ namespace Domotica
 			List<bool> boolStates = new List<bool>();
 			foreach (string s in states)
 			{
+				Log.Debug ("myApp", s);
 				if (s == "true") 
 					boolStates.Add(true);
 				else if(s == "false") 

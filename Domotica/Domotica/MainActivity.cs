@@ -11,6 +11,7 @@ using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Android.Support.V4.Widget;
 using SupportFragment = Android.Support.V4.App.Fragment;
+using System.Timers;
 
 namespace Domotica
 {
@@ -57,7 +58,6 @@ namespace Domotica
 			mMode1 = new Mode1 ();
 			mStackFragment = new Stack<SupportFragment> ();
 
-
 			//Create Toolbar
 			SetSupportActionBar (mToolbar);
 			SupportActionBar.SetHomeButtonEnabled(true);
@@ -65,8 +65,6 @@ namespace Domotica
 
 			//Create All Fragments
 			var trans = SupportFragmentManager.BeginTransaction ();
-
-			trans.SetCustomAnimations (Resource.Animation.first_slide_in, Resource.Animation.first_slide_out, Resource.Animation.second_slide_in, Resource.Animation.second_slide_out);
 
 			trans.Add (Resource.Id.fragmentContainter, mMode1, "Mode1");
 			trans.Hide (mMode1);

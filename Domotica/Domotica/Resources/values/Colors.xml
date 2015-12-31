@@ -9,10 +9,12 @@
   <!--Color of the Primary text-->
   <color name="my_textColorDark">#FFFFFF</color>
   <color name="my_textColorLight">#000000</color>
-  <!--Color of the background-->
+  <!--Background Color of the Fragments-->
   <color name="my_windowBackground">#FFFFFF</color>
   <!--Color of the menu-->
   <color name="my_menuColor">#B71C1C</color>
   <!--Color of the navigation bar-->
-  <!--<color name="my_navBarColor"></color>-->
+  <color name="my_navBarColor">#FFFFFF</color>
+  <!--Color of the background of the app-->
+  <color name="my_BackgroundColor">#F5F5F5</color>
 </resources>

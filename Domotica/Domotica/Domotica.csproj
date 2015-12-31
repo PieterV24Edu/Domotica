@@ -87,17 +87,18 @@
     <AndroidResource Include="Resources\layout\Connection.axml" />
     <AndroidResource Include="Resources\layout\Mode.axml" />
     <AndroidResource Include="Resources\layout\Home.axml" />
-    <AndroidResource Include="Resources\drawable\ic_signal_wifi_off.png" />
-    <AndroidResource Include="Resources\drawable\ic_signal_wifi_on.png" />
     <AndroidResource Include="Resources\anim\first_slide_in.xml" />
     <AndroidResource Include="Resources\anim\first_slide_out.xml" />
     <AndroidResource Include="Resources\anim\second_slide_in.xml" />
     <AndroidResource Include="Resources\anim\second_slide_out.xml" />
+    <AndroidResource Include="Resources\menu\action_menu.xml" />
+    <AndroidResource Include="Resources\drawable\ic_add_white_48dp.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="fragments\" />
     <Folder Include="Resources\anim\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

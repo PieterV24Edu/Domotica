@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px"
-    android:background="@color/my_accent">
+    android:background="@color/my_BackgroundColor">
 <!-- Toolbar -->
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        android:elevation="2dp"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
     <android.support.v4.widget.DrawerLayout
@@ -34,6 +35,7 @@
             android:choiceMode="singleChoice"
             android:divider="@color/my_accent"
             android:dividerHeight="1dp"
-            android:background="@color/my_menuColor" />
+            android:background="@color/my_menuColor"
+            android:elevation="2dp" />
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

@@ -71,8 +71,10 @@ void loop() {
 
 void returnValues(EthernetClient client)
 {
-  Serial.println(String(analogRead(tempPin) + "," + analogRead(lightPin)));
-  client.print(String(analogRead(tempPin) + "," + analogRead(lightPin)));
+  //Serial.println(String(analogRead(tempPin) + "," + analogRead(lightPin)));
+  //client.print(String(analogRead(tempPin) + "," + analogRead(lightPin)));
+  Serial.println("1024,945");
+  client.print("1024,945");
 }
 
 void setSwitch(int adapter, int state)

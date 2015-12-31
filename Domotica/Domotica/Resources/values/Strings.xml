@@ -10,5 +10,6 @@
 	<string name="Switches2">Timers</string>
 	<string name="Connection">Connection</string>
 	<string name="Mode">Modes</string>
-
+	<string name="sensorName1">Temperature Sensor</string>
+	<string name="sensorName2">Light Sensor</string>
 </resources>

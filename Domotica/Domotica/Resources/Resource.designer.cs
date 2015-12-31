@@ -736,29 +736,29 @@ namespace Domotica
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0b003a
-			public const int abc_background_cache_hint_selector_material_dark = 2131427386;
+			// aapt resource value: 0x7f0b003c
+			public const int abc_background_cache_hint_selector_material_dark = 2131427388;
 			
-			// aapt resource value: 0x7f0b003b
-			public const int abc_background_cache_hint_selector_material_light = 2131427387;
+			// aapt resource value: 0x7f0b003d
+			public const int abc_background_cache_hint_selector_material_light = 2131427389;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int abc_input_method_navigation_guard = 2131427328;
 			
-			// aapt resource value: 0x7f0b003c
-			public const int abc_primary_text_disable_only_material_dark = 2131427388;
-			
-			// aapt resource value: 0x7f0b003d
-			public const int abc_primary_text_disable_only_material_light = 2131427389;
-			
 			// aapt resource value: 0x7f0b003e
-			public const int abc_primary_text_material_dark = 2131427390;
+			public const int abc_primary_text_disable_only_material_dark = 2131427390;
 			
 			// aapt resource value: 0x7f0b003f
-			public const int abc_primary_text_material_light = 2131427391;
+			public const int abc_primary_text_disable_only_material_light = 2131427391;
 			
 			// aapt resource value: 0x7f0b0040
-			public const int abc_search_url_text = 2131427392;
+			public const int abc_primary_text_material_dark = 2131427392;
+			
+			// aapt resource value: 0x7f0b0041
+			public const int abc_primary_text_material_light = 2131427393;
+			
+			// aapt resource value: 0x7f0b0042
+			public const int abc_search_url_text = 2131427394;
 			
 			// aapt resource value: 0x7f0b0001
 			public const int abc_search_url_text_normal = 2131427329;
@@ -769,11 +769,11 @@ namespace Domotica
 			// aapt resource value: 0x7f0b0003
 			public const int abc_search_url_text_selected = 2131427331;
 			
-			// aapt resource value: 0x7f0b0041
-			public const int abc_secondary_text_material_dark = 2131427393;
+			// aapt resource value: 0x7f0b0043
+			public const int abc_secondary_text_material_dark = 2131427395;
 			
-			// aapt resource value: 0x7f0b0042
-			public const int abc_secondary_text_material_light = 2131427394;
+			// aapt resource value: 0x7f0b0044
+			public const int abc_secondary_text_material_light = 2131427396;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int accent_material_dark = 2131427332;
@@ -862,11 +862,17 @@ namespace Domotica
 			// aapt resource value: 0x7f0b0020
 			public const int material_deep_teal_500 = 2131427360;
 			
+			// aapt resource value: 0x7f0b003b
+			public const int my_BackgroundColor = 2131427387;
+			
 			// aapt resource value: 0x7f0b0035
 			public const int my_accent = 2131427381;
 			
 			// aapt resource value: 0x7f0b0039
 			public const int my_menuColor = 2131427385;
+			
+			// aapt resource value: 0x7f0b003a
+			public const int my_navBarColor = 2131427386;
 			
 			// aapt resource value: 0x7f0b0033
 			public const int my_primary = 2131427379;
@@ -931,11 +937,11 @@ namespace Domotica
 			// aapt resource value: 0x7f0b0030
 			public const int switch_thumb_disabled_material_light = 2131427376;
 			
-			// aapt resource value: 0x7f0b0043
-			public const int switch_thumb_material_dark = 2131427395;
+			// aapt resource value: 0x7f0b0045
+			public const int switch_thumb_material_dark = 2131427397;
 			
-			// aapt resource value: 0x7f0b0044
-			public const int switch_thumb_material_light = 2131427396;
+			// aapt resource value: 0x7f0b0046
+			public const int switch_thumb_material_light = 2131427398;
 			
 			// aapt resource value: 0x7f0b0031
 			public const int switch_thumb_normal_material_dark = 2131427377;
@@ -1354,13 +1360,10 @@ namespace Domotica
 			public const int abc_textfield_search_material = 2130837562;
 			
 			// aapt resource value: 0x7f02003b
-			public const int ic_signal_wifi_off = 2130837563;
+			public const int ic_add_white_48dp = 2130837563;
 			
 			// aapt resource value: 0x7f02003c
-			public const int ic_signal_wifi_on = 2130837564;
-			
-			// aapt resource value: 0x7f02003d
-			public const int notification_template_icon_bg = 2130837565;
+			public const int notification_template_icon_bg = 2130837564;
 			
 			static Drawable()
 			{
@@ -1375,26 +1378,32 @@ namespace Domotica
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0c0065
-			public const int Ch1 = 2131492965;
-			
-			// aapt resource value: 0x7f0c0066
-			public const int Ch2 = 2131492966;
-			
-			// aapt resource value: 0x7f0c0067
-			public const int Ch3 = 2131492967;
-			
-			// aapt resource value: 0x7f0c0068
-			public const int Ch4 = 2131492968;
+			// aapt resource value: 0x7f0c006f
+			public const int Add_Button = 2131492975;
 			
 			// aapt resource value: 0x7f0c0069
-			public const int ChAll = 2131492969;
+			public const int Ch1 = 2131492969;
+			
+			// aapt resource value: 0x7f0c006a
+			public const int Ch2 = 2131492970;
+			
+			// aapt resource value: 0x7f0c006b
+			public const int Ch3 = 2131492971;
+			
+			// aapt resource value: 0x7f0c006c
+			public const int Ch4 = 2131492972;
+			
+			// aapt resource value: 0x7f0c006d
+			public const int ChAll = 2131492973;
 			
 			// aapt resource value: 0x7f0c0052
 			public const int ConnectionButton = 2131492946;
 			
 			// aapt resource value: 0x7f0c004f
 			public const int Connection_Text = 2131492943;
+			
+			// aapt resource value: 0x7f0c0068
+			public const int Refresh_Sensors = 2131492968;
 			
 			// aapt resource value: 0x7f0c0058
 			public const int action0 = 2131492952;
@@ -1456,8 +1465,8 @@ namespace Domotica
 			// aapt resource value: 0x7f0c0036
 			public const int buttonPanel = 2131492918;
 			
-			// aapt resource value: 0x7f0c006a
-			public const int buttonRefresh = 2131492970;
+			// aapt resource value: 0x7f0c006e
+			public const int buttonRefresh = 2131492974;
 			
 			// aapt resource value: 0x7f0c0059
 			public const int cancel_action = 2131492953;
@@ -1521,6 +1530,9 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f0c0055
 			public const int fragmentContainter = 2131492949;
+			
+			// aapt resource value: 0x7f0c0065
+			public const int gridLayout1 = 2131492965;
 			
 			// aapt resource value: 0x7f0c0004
 			public const int home = 2131492868;
@@ -1623,6 +1635,12 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f0c004e
 			public const int select_dialog_listview = 2131492942;
+			
+			// aapt resource value: 0x7f0c0066
+			public const int sensor1Text = 2131492966;
+			
+			// aapt resource value: 0x7f0c0067
+			public const int sensor2Text = 2131492967;
 			
 			// aapt resource value: 0x7f0c0039
 			public const int shortcut = 2131492921;
@@ -1885,6 +1903,22 @@ namespace Domotica
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0d0000
+			public const int action_menu = 2131558400;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class Mipmap
 		{
 			
@@ -1984,6 +2018,12 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f060013
 			public const int openDrawer = 2131099667;
+			
+			// aapt resource value: 0x7f06001c
+			public const int sensorName1 = 2131099676;
+			
+			// aapt resource value: 0x7f06001d
+			public const int sensorName2 = 2131099677;
 			
 			// aapt resource value: 0x7f060011
 			public const int status_bar_notification_info_overflow = 2131099665;
