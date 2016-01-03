@@ -93,6 +93,7 @@
     <AndroidResource Include="Resources\anim\second_slide_out.xml" />
     <AndroidResource Include="Resources\menu\action_menu.xml" />
     <AndroidResource Include="Resources\drawable\ic_add_white_48dp.png" />
+    <AndroidResource Include="Resources\drawable\Circle.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
