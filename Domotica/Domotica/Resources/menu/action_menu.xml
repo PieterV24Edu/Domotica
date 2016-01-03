@@ -5,8 +5,8 @@
      
 	<item android:id="@+id/Add_Button"
 		android:icon="@drawable/ic_add_white_48dp"
-		android:title="Add_Button"
-		myapp:showAsAction="always" />
+		android:title="Add"
+		myapp:showAsAction="always"/>
 
 </menu>
 

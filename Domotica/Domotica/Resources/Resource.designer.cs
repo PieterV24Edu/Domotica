@@ -1360,13 +1360,10 @@ namespace Domotica
 			public const int abc_textfield_search_material = 2130837562;
 			
 			// aapt resource value: 0x7f02003b
-			public const int Circle = 2130837563;
+			public const int ic_add_white_48dp = 2130837563;
 			
 			// aapt resource value: 0x7f02003c
-			public const int ic_add_white_48dp = 2130837564;
-			
-			// aapt resource value: 0x7f02003d
-			public const int notification_template_icon_bg = 2130837565;
+			public const int notification_template_icon_bg = 2130837564;
 			
 			static Drawable()
 			{
@@ -1381,23 +1378,23 @@ namespace Domotica
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0c0070
-			public const int Add_Button = 2131492976;
+			// aapt resource value: 0x7f0c006f
+			public const int Add_Button = 2131492975;
+			
+			// aapt resource value: 0x7f0c0069
+			public const int Ch1 = 2131492969;
 			
 			// aapt resource value: 0x7f0c006a
-			public const int Ch1 = 2131492970;
+			public const int Ch2 = 2131492970;
 			
 			// aapt resource value: 0x7f0c006b
-			public const int Ch2 = 2131492971;
+			public const int Ch3 = 2131492971;
 			
 			// aapt resource value: 0x7f0c006c
-			public const int Ch3 = 2131492972;
+			public const int Ch4 = 2131492972;
 			
 			// aapt resource value: 0x7f0c006d
-			public const int Ch4 = 2131492973;
-			
-			// aapt resource value: 0x7f0c006e
-			public const int ChAll = 2131492974;
+			public const int ChAll = 2131492973;
 			
 			// aapt resource value: 0x7f0c0052
 			public const int ConnectionButton = 2131492946;
@@ -1407,9 +1404,6 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f0c0068
 			public const int Refresh_Sensors = 2131492968;
-			
-			// aapt resource value: 0x7f0c0069
-			public const int Toggle_SensorRefresh = 2131492969;
 			
 			// aapt resource value: 0x7f0c0058
 			public const int action0 = 2131492952;
@@ -1471,8 +1465,8 @@ namespace Domotica
 			// aapt resource value: 0x7f0c0036
 			public const int buttonPanel = 2131492918;
 			
-			// aapt resource value: 0x7f0c006f
-			public const int buttonRefresh = 2131492975;
+			// aapt resource value: 0x7f0c006e
+			public const int buttonRefresh = 2131492974;
 			
 			// aapt resource value: 0x7f0c0059
 			public const int cancel_action = 2131492953;

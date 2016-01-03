@@ -92,7 +92,6 @@ namespace Domotica
 
 			//Set Data For the navigation Drawer
 			mDrawerData = new List<string> () {"Home", "Switches", "Sensors", "Sensor Threshold", "Timers","Connection", "Modes"};
-			//get adapter to interpet list with data
 			mAdapter = new ArrayAdapter<string> (this, Resource.Layout.mytextview, mDrawerData);
 			mDrawer.Adapter = mAdapter;
 			//Enable DrawerToggle
@@ -109,7 +108,6 @@ namespace Domotica
 			SupportActionBar.SetDisplayShowTitleEnabled (true);
 			mDrawerToggle.SyncState ();
 
-			//if this is the frist time the view is created set title on the toolbar to Home since this this the fragment you're greeted with
 			if (savedInstanceState != null)
 			{
 			}
@@ -120,7 +118,6 @@ namespace Domotica
 
 			//Event handlers
 			//UI Event Handler
-			//if DrawerItem is selected change view and Title on the toolbar acoardingly
 			mDrawer.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => 
 			{
 				switch(e.Position)
@@ -158,21 +155,19 @@ namespace Domotica
 		}
 
 
-		//Get input from drawertoggle
+
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			mDrawerToggle.OnOptionsItemSelected (item);
 			return base.OnOptionsItemSelected (item);
 		}
 
-		//Synch drawertoggle with drawerstate
 		protected override void OnPostCreate (Bundle savedInstanceState)
 		{
 			base.OnPostCreate (savedInstanceState);
 			mDrawerToggle.SyncState ();
 		}
 
-		//if back button is pressed get last seen fragment
 		public override void OnBackPressed ()
 		{
 			if (SupportFragmentManager.BackStackEntryCount > 0) 
@@ -186,15 +181,6 @@ namespace Domotica
 			}
 		}
 
-		//Inflate MenuIcons on the Toolbar
-		/*public override bool OnCreateOptionsMenu (IMenu menu)
-		{
-			MenuInflater.Inflate (Resource.Menu.action_menu, menu);
-			return base.OnCreateOptionsMenu (menu);
-		}*/
-
-
-		//Change Shown fragment and hide current
 		private void changeFragment(SupportFragment fragment1)
 		{
 			var trans = SupportFragmentManager.BeginTransaction ();
