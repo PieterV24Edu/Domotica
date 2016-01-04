@@ -197,15 +197,18 @@ namespace Domotica
 		//Change Shown fragment and hide current
 		private void changeFragment(SupportFragment fragment1)
 		{
-			var trans = SupportFragmentManager.BeginTransaction ();
-			trans.SetCustomAnimations (Resource.Animation.first_slide_in, Resource.Animation.first_slide_out, Resource.Animation.second_slide_in, Resource.Animation.second_slide_out);
-			trans.Hide (mCurrentFragment);
-			trans.Show (fragment1);
-			trans.AddToBackStack(null);
-			trans.Commit ();
+			if (fragment1 != mCurrentFragment) 
+			{
+				var trans = SupportFragmentManager.BeginTransaction ();
+				trans.SetCustomAnimations (Resource.Animation.first_slide_in, Resource.Animation.first_slide_out, Resource.Animation.second_slide_in, Resource.Animation.second_slide_out);
+				trans.Hide (mCurrentFragment);
+				trans.Show (fragment1);
+				trans.AddToBackStack (null);
+				trans.Commit ();
 
-			mStackFragment.Push (mCurrentFragment);
-			mCurrentFragment = fragment1;
+				mStackFragment.Push (mCurrentFragment);
+				mCurrentFragment = fragment1;
+			}
 			mDrawerLayout.CloseDrawer (mDrawer);
 		}
 	}
