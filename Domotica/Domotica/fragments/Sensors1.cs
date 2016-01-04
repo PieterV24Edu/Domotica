@@ -59,7 +59,13 @@ namespace Domotica
 			};
 
 			refreshToggleSwitch.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e) {
-				mTimer.Enabled = e.IsChecked;
+				if(GlobalVariables.IpAvailable)
+					mTimer.Enabled = e.IsChecked;
+				else
+				{
+					refreshToggleSwitch.Checked = false;
+					noConnectionAlert();
+				}
 			};
 
 			return view;
@@ -70,8 +76,8 @@ namespace Domotica
 			if (GlobalVariables.IpAvailable)
 			{
 				Log.Debug ("myApp", "getValues");
-				string[] tempString = connect.ask ("getVal").Split(',');
-				Log.Debug ("myApp", tempString[0] + ", " + tempString[1]);
+				string[] tempString = connect.ask ("getVal").Split (',');
+				Log.Debug ("myApp", tempString [0] + ", " + tempString [1]);
 				if (tempString.Length == 2)
 				{
 					Activity.RunOnUiThread (() => {
@@ -79,6 +85,9 @@ namespace Domotica
 						Sensor2.Text = tempString [1];
 					});
 				}
+			} else
+			{
+				noConnectionAlert ();
 			}
 		}
 
@@ -87,8 +96,8 @@ namespace Domotica
 			if (GlobalVariables.IpAvailable)
 			{
 				Log.Debug ("myApp", "getValues");
-				string[] tempString = connect.ask ("getVal").Split(',');
-				Log.Debug ("myApp", tempString[0] + ", " + tempString[1]);
+				string[] tempString = connect.ask ("getVal").Split (',');
+				Log.Debug ("myApp", tempString [0] + ", " + tempString [1]);
 				if (tempString.Length == 2)
 				{
 					Activity.RunOnUiThread (() => {
@@ -96,7 +105,22 @@ namespace Domotica
 						Sensor2.Text = tempString [1];
 					});
 				}
+			} else
+			{
+				noConnectionAlert ();
 			}
+		}
+		public void noConnectionAlert()
+		{
+			AlertDialog.Builder alert = new AlertDialog.Builder (this.Activity);
+			alert.SetTitle ("No Connection");
+			alert.SetMessage ("The app could not connect to the arduino.\nPlease check if a valid IP is entered");
+			alert.SetNeutralButton ("OK", (senderAlert, EventArgs) => {
+				alert.Dispose ();
+			});
+			Activity.RunOnUiThread (() => {
+				alert.Show ();
+			});
 		}
 	}
 }

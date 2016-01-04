@@ -56,43 +56,41 @@ namespace Domotica
 			Adapter1.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e) 
 			{
 				if (!backgroundChange)
-				{
 					ThreadPool.QueueUserWorkItem (o => switchControl (1, e.IsChecked));
-				}
+				if(!GlobalVariables.IpAvailable)
+					Adapter1.Checked = false;
 			};
 			Adapter2.CheckedChange += delegate(object sender, CompoundButton.CheckedChangeEventArgs e) 
 			{
 				if (!backgroundChange)
-				{
 					ThreadPool.QueueUserWorkItem (o => switchControl (2, e.IsChecked));
-				}
+				if(!GlobalVariables.IpAvailable)
+					Adapter2.Checked = false;
 			};
 			Adapter3.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) 
 			{
 				if (!backgroundChange)
-				{
 					ThreadPool.QueueUserWorkItem (o => switchControl (3, e.IsChecked));
-				}
+				if(!GlobalVariables.IpAvailable)
+					Adapter3.Checked = false;
 			};
 			Adapter4.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) 
 			{
 				if (!backgroundChange)
-				{
 					ThreadPool.QueueUserWorkItem (o => switchControl (4, e.IsChecked));
-				}
+				if(!GlobalVariables.IpAvailable)
+					Adapter4.Checked = false;
 			};
 			Adapter5.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs e) 
 			{
 				if (!backgroundChange)
-				{
 					ThreadPool.QueueUserWorkItem (o => switchControl (5, e.IsChecked));
-				}
+				if(!GlobalVariables.IpAvailable)
+					Adapter5.Checked = false;
 			};
 			buttonRefresh.Click += delegate {
 				if(GlobalVariables.IpAvailable)
-				{
 					ThreadPool.QueueUserWorkItem(o => checkSwitches());
-				}
 			};
 			return view;
 		}
@@ -121,40 +119,60 @@ namespace Domotica
 						break;
 				}
 				checkSwitches ();
+			} else
+			{
+				noConnectionAlert ();
 			}
 		}
 
 		public void checkSwitches()
 		{
-			backgroundChange = true;
-			string[] states = connect.ask("States").Split(',');
-			List<bool> boolStates = new List<bool>();
-			foreach (string s in states)
+			if (GlobalVariables.IpAvailable)
 			{
-				Log.Debug ("myApp", s);
-				if (s == "true") 
-					boolStates.Add(true);
-				else if(s == "false") 
-					boolStates.Add(false);
-			}
-			if (boolStates.Count == 4)
-			{
-				Activity.RunOnUiThread (() => {
-					for (int i = 0; i < 4; i++)
-					{
-						if(_Adapters[i].Checked != boolStates[i])
+				backgroundChange = true;
+				string[] states = connect.ask ("States").Split (',');
+				List<bool> boolStates = new List<bool> ();
+				foreach (string s in states)
+				{
+					if (s == "true")
+						boolStates.Add (true);
+					else if (s == "false")
+						boolStates.Add (false);
+				}
+				if (boolStates.Count == 4)
+				{
+					Activity.RunOnUiThread (() => {
+						for (int i = 0; i < 4; i++)
 						{
-							_Adapters [i].Checked = boolStates [i];
+							if (_Adapters [i].Checked != boolStates [i])
+							{
+								_Adapters [i].Checked = boolStates [i];
+							}
 						}
-					}
-					if (boolStates.Contains (!boolStates [0])) 
-						_Adapters [4].Checked = false;
-					else 
-						_Adapters [4].Checked = boolStates [0];
-					backgroundChange = false;
-				});
+						if (boolStates.Contains (!boolStates [0]))
+							_Adapters [4].Checked = false;
+						else
+							_Adapters [4].Checked = boolStates [0];
+						backgroundChange = false;
+					});
+				}
+			} else
+			{
+				noConnectionAlert ();
 			}
-			//backgroundChange = false;
+		}
+
+		public void noConnectionAlert()
+		{
+			AlertDialog.Builder alert = new AlertDialog.Builder (this.Activity);
+			alert.SetTitle ("No Connection");
+			alert.SetMessage ("The app could not connect to the arduino.\nPlease check if a valid IP is entered");
+			alert.SetNeutralButton ("OK", (senderAlert, EventArgs) => {
+				alert.Dispose ();
+			});
+			Activity.RunOnUiThread (() => {
+				alert.Show ();
+			});
 		}
 	}
 }
